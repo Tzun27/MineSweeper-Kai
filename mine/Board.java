@@ -3,6 +3,8 @@ package mine;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -24,6 +26,7 @@ public class Board{
 	private static final int VERTICAL_TILES = BOARD_HEIGHT / TILE_SIZE;
 	
 	private Tile[][] grid = new Tile[HORIZONTAL_TILES][VERTICAL_TILES];
+	private static String levelString = "1";
 	public Scene scene;
 	
 	public int getTileSize() {
@@ -33,7 +36,26 @@ public class Board{
 	//create new board
 	public Parent init_board() {
 		Pane root = new Pane();
-		root.setPrefSize(BOARD_WIDTH, BOARD_HEIGHT);
+		root.setPrefSize(BOARD_WIDTH, BOARD_HEIGHT + 30);
+		ProgressBar exp = new ProgressBar();
+		Label experience = new Label("Exp:");
+		Label level = new Label("Level: " + levelString);
+		
+		level.setLayoutX(600);
+		level.setLayoutY(800);
+		level.setFont(Font.font(20));
+		
+		experience.setLayoutX(0);
+		experience.setLayoutY(800);
+		experience.setFont(Font.font(20));
+		
+		exp.setPrefHeight(30);
+		exp.setPrefWidth(500);
+		exp.setLayoutX(50);
+		exp.setLayoutY(800);
+		exp.setProgress(0);
+		
+		root.getChildren().addAll(exp,experience,level);
 		
 		//generates tiles and places them into the grid
 		for(int x = 0; x < HORIZONTAL_TILES; x++) {
