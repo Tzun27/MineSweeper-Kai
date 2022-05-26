@@ -69,7 +69,7 @@ public class Board{
 				double rand = Math.random();
 				Tile tile = grid[y][x];
 				
-				if(!tile.isBomb())
+				if(!tile.isEnemy())
 					continue;
 				
 				if(rand <= 0.45 ) {
@@ -105,10 +105,10 @@ public class Board{
 			for(int y = 0; y < VERTICAL_TILES; y++) {
 				Tile tile = grid[y][x];
 				
-				if(tile.isBomb())
+				if(tile.isEnemy())
 					continue;
 				
-				long bombsAroundTile = checkSurroundings(tile).stream().filter(t -> t.isBomb()).count();
+				long bombsAroundTile = checkSurroundings(tile).stream().filter(t -> t.isEnemy()).count();
 				
 				if(bombsAroundTile > 0) {
 					tile.setText(String.valueOf(bombsAroundTile));
