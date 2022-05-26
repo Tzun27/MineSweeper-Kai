@@ -1,17 +1,11 @@
 package mine;
 
-import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +21,7 @@ public class Board{
 	
 	private Tile[][] grid = new Tile[HORIZONTAL_TILES][VERTICAL_TILES];
 	public int openTiles = 0;
-	private static String levelString = "1";
+	private static int playerLevel = 1;
 	
 	public Scene scene;
 	
@@ -41,7 +35,7 @@ public class Board{
 		root.setPrefSize(BOARD_WIDTH, BOARD_HEIGHT + 30);
 		ProgressBar exp = new ProgressBar();
 		Label experience = new Label("Exp:");
-		Label level = new Label("Level: " + levelString);
+		Label level = new Label("Level: " + playerLevel);
 		
 		level.setLayoutX(600);
 		level.setLayoutY(800);
@@ -62,10 +56,47 @@ public class Board{
 		//generates tiles and places them into the grid
 		for(int x = 0; x < HORIZONTAL_TILES; x++) {
 			for(int y = 0; y < VERTICAL_TILES; y++) {
-				Tile tile = new Tile(x, y, Math.random() < 0.2);
+				Tile tile = new Tile(x, y, Math.random() <= 0.2);
 				
 				grid[y][x] = tile;
 				root.getChildren().add(tile);
+			}
+		}
+		
+		//sets enemy levels
+		for(int x = 0; x < HORIZONTAL_TILES; x++) {
+			for(int y = 0; y < VERTICAL_TILES; y++) {
+				double rand = Math.random();
+				Tile tile = grid[y][x];
+				
+				if(!tile.isBomb())
+					continue;
+				
+				if(rand <= 0.45 ) {
+					tile.setLevel(1);
+					tile.setText("One");
+				}
+				
+				else if(rand > 0.45 && rand <= 0.7) {
+					tile.setLevel(2);
+					tile.setText("Two");
+					}
+				
+				
+				else if(rand > 0.7 && rand <= 0.85) {
+					tile.setLevel(3);
+					tile.setText("Three");
+				}
+				
+				else if(rand > 0.85 && rand <= 0.95) {
+					tile.setLevel(4);
+					tile.setText("Four");
+				}
+				
+				else if(rand > 0.95 && rand <= 1) {
+					tile.setLevel(5);
+					tile.setText("Five");
+				}
 			}
 		}
 		

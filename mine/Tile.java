@@ -13,6 +13,7 @@ public class Tile extends StackPane{
 	private int x, y;
 	private boolean isBomb;
 	private boolean isOpen = false;
+	private int enemyLevel = 0;
 	
 	//minus two for the border
 	private Rectangle square = new Rectangle(board.getTileSize() - 2, board.getTileSize() - 2);
@@ -34,14 +35,19 @@ public class Tile extends StackPane{
 		text.setText(bombNum);
 	}
 	
+	public void setLevel(int level) {
+		enemyLevel = level;
+	}
+	
 	public Tile(int x, int y, boolean isBomb){
 		this.x = x;
 		this.y = y;
 		this.isBomb = isBomb;
 		
 		square.setStroke(Color.WHITE);
-		text.setFont(Font.font(16));
-		text.setText(isBomb ? "X" : "");
+		text.setFont(Font.font(12));
+		text.setText(isBomb ? "One" : "");
+		
 		text.setVisible(false);
 		
 		getChildren().addAll(square, text);
