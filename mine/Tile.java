@@ -49,13 +49,28 @@ public class Tile extends StackPane{
 		setTranslateX(x * board.getTileSize());
 		setTranslateY(y * board.getTileSize());
 		
-		setOnMouseClicked(e -> openTile());
+		setOnMouseClicked(e -> {
+			openTile();
+			checkWin();
+		});
+		
+	}
+	
+	
+	public void checkWin() {
+		if(board.openTiles == Board.HORIZONTAL_TILES * Board.VERTICAL_TILES) {
+			System.out.println("You win!");
+			return;
+		}
 	}
 	
 	//method for flipping open a tile, if tile is empty it'll open surrounding empty tiles
 	public void openTile() {
+		
 		if(isOpen)
 			return;
+		
+		board.openTiles++;
 		
 		if(isBomb) {
 			System.out.println("Game Over");

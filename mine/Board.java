@@ -22,11 +22,13 @@ public class Board{
 	private static final int BOARD_WIDTH = 800;
 	private static final int BOARD_HEIGHT = 800;
 	
-	private static final int HORIZONTAL_TILES = BOARD_WIDTH / TILE_SIZE;
-	private static final int VERTICAL_TILES = BOARD_HEIGHT / TILE_SIZE;
+	public static final int HORIZONTAL_TILES = BOARD_WIDTH / TILE_SIZE;
+	public static final int VERTICAL_TILES = BOARD_HEIGHT / TILE_SIZE;
 	
 	private Tile[][] grid = new Tile[HORIZONTAL_TILES][VERTICAL_TILES];
+	public int openTiles = 0;
 	private static String levelString = "1";
+	
 	public Scene scene;
 	
 	public int getTileSize() {
