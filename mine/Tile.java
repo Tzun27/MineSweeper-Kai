@@ -2,6 +2,8 @@ package mine;
 
 import java.util.List;
 
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -10,6 +12,9 @@ import javafx.scene.text.Text;
 
 public class Tile extends StackPane{
 	private Board board = Minesweeper.board;
+	private Player player = Minesweeper.board.player;
+	private Label level = Minesweeper.board.level;
+	
 	private int x, y;
 	private boolean isEnemy;
 	private boolean isOpen = false;
@@ -18,6 +23,7 @@ public class Tile extends StackPane{
 	//minus two for the border
 	private Rectangle square = new Rectangle(board.getTileSize() - 2, board.getTileSize() - 2);
 	private Text text = new Text();
+	private ProgressBar exp = Minesweeper.board.exp;
 	
 	public boolean isEnemy() {
 		return isEnemy;
@@ -62,6 +68,95 @@ public class Tile extends StackPane{
 		
 	}
 	
+	//Player gains different amount of exp depending on type of enemy defeated as well as own level
+	public void calculateExpGain(int playerLevel) {
+		switch (playerLevel) {
+		case 1: {
+			lv1ExpGain();
+			break;
+		}
+		case 2: {
+			lv2ExpGain();
+			break;
+		}
+		case 3: {
+			lv3ExpGain();
+			break;
+		}
+		case 4: {
+			lv4ExpGain();
+			break;
+		}
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + enemyLevel);
+		}
+	}
+	
+	public void lv1ExpGain() {
+		player.addPlayerExp(0.2);
+		return;
+	}
+	
+	public void lv2ExpGain() {
+		switch (enemyLevel) {
+		case 1: {
+			player.addPlayerExp(0.15);;
+			break;
+		}
+		case 2: {
+			player.addPlayerExp(0.25);;
+			break;
+		}
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + enemyLevel);
+		}
+		return;
+	}
+
+	public void lv3ExpGain() {
+		switch (enemyLevel) {
+		case 1: {
+			player.addPlayerExp(0.1);;
+			break;
+		}
+		case 2: {
+			player.addPlayerExp(0.15);;
+			break;
+		}
+		case 3: {
+			player.addPlayerExp(0.2);;
+			break;
+		}
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + enemyLevel);
+		}
+		return;
+	}
+
+	public void lv4ExpGain() {
+		switch (enemyLevel) {
+		case 1: {
+			player.addPlayerExp(0.05);;
+			break;
+		}
+		case 2: {
+			player.addPlayerExp(0.1);;
+			break;
+		}
+		case 3: {
+			player.addPlayerExp(0.15);;
+			break;
+		}
+		case 4: {
+			player.addPlayerExp(0.2);;
+			break;
+		}
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + enemyLevel);
+		}
+		return;
+	}
+
 	
 	public void checkWin() {
 		if(board.openTiles == Board.HORIZONTAL_TILES * Board.VERTICAL_TILES) {
@@ -79,9 +174,19 @@ public class Tile extends StackPane{
 		board.openTiles++;
 		
 		if(isEnemy) {
-			System.out.println("Game Over");
+			if(player.getPlayerLevel() < enemyLevel) {
+				System.out.println("Game Over");
+			}
+			
+			calculateExpGain(player.getPlayerLevel());
+			exp.setProgress(player.getPlayerExp() % 1.0);
+			player.updateLevel();
+			level.setText("Level: " + player.getPlayerLevel());
+			//System.out.println("Game Over");
 		}
 		
+		//System.out.println(player.getPlayerExp());
+		//System.out.println(player.getPlayerLevel());
 		isOpen = true;
 		text.setVisible(true);
 		square.setFill(null);

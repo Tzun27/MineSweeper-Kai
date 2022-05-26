@@ -21,8 +21,10 @@ public class Board{
 	
 	private Tile[][] grid = new Tile[HORIZONTAL_TILES][VERTICAL_TILES];
 	public int openTiles = 0;
-	private static int playerLevel = 1;
 	
+	public static Player player = new Player();
+	public static Label level = new Label("Level: " + player.getPlayerLevel());
+	public static ProgressBar exp = new ProgressBar();
 	public Scene scene;
 	
 	public int getTileSize() {
@@ -33,9 +35,8 @@ public class Board{
 	public Parent init_board() {
 		Pane root = new Pane();
 		root.setPrefSize(BOARD_WIDTH, BOARD_HEIGHT + 30);
-		ProgressBar exp = new ProgressBar();
+		
 		Label experience = new Label("Exp:");
-		Label level = new Label("Level: " + playerLevel);
 		
 		level.setLayoutX(600);
 		level.setLayoutY(800);
