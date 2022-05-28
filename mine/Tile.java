@@ -29,6 +29,10 @@ public class Tile extends StackPane{
 		return isEnemy;
 	}
 	
+	public int getEnemyLevel() {
+		return enemyLevel;
+	}
+	
 	public int getX() {
 		return x;
 	}

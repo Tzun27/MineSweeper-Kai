@@ -132,7 +132,7 @@ public class Board{
 			}
 		}
 		
-		//check how many bombs are around the tile and adds corresponding text
+		//check how many enemies are around the tile and adds corresponding text
 		for(int x = 0; x < HORIZONTAL_TILES; x++) {
 			for(int y = 0; y < VERTICAL_TILES; y++) {
 				Tile tile = grid[y][x];
@@ -140,10 +140,14 @@ public class Board{
 				if(tile.isEnemy())
 					continue;
 				
-				long bombsAroundTile = checkSurroundings(tile).stream().filter(t -> t.isEnemy()).count();
+				long enemiesAroundTile = checkSurroundings(tile)
+										.stream()
+										.filter(t -> t.isEnemy())
+										.mapToInt(t -> t.getEnemyLevel())
+										.sum();
 				
-				if(bombsAroundTile > 0) {
-					tile.setText(String.valueOf(bombsAroundTile));
+				if(enemiesAroundTile > 0) {
+					tile.setText(String.valueOf(enemiesAroundTile));
 				}
 					
 			}
