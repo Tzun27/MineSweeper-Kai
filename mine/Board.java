@@ -4,7 +4,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.text.Font;
 
 import java.util.ArrayList;
@@ -16,16 +18,27 @@ public class Board{
 	private static final int BOARD_WIDTH = 800;
 	private static final int BOARD_HEIGHT = 800;
 	
-	public static final int HORIZONTAL_TILES = BOARD_WIDTH / TILE_SIZE;
-	public static final int VERTICAL_TILES = BOARD_HEIGHT / TILE_SIZE;
+	private static final int HORIZONTAL_TILES = BOARD_WIDTH / TILE_SIZE;
+	private static final int VERTICAL_TILES = BOARD_HEIGHT / TILE_SIZE;
 	
 	private Tile[][] grid = new Tile[HORIZONTAL_TILES][VERTICAL_TILES];
 	public int openTiles = 0;
+	
+	private Image[] enemyPng = new Image[5];
+	public ImagePattern[] ip = new ImagePattern[5];
 	
 	public static Player player = new Player();
 	public static Label level = new Label("Level: " + player.getPlayerLevel());
 	public static ProgressBar exp = new ProgressBar();
 	public Scene scene;
+	
+	public int getHorizontalTiles() {
+		return HORIZONTAL_TILES;
+	}
+	
+	public int getVerticalTiles() {
+		return VERTICAL_TILES;
+	}
 	
 	public int getTileSize() {
 		return TILE_SIZE;
@@ -35,6 +48,19 @@ public class Board{
 	public Parent init_board() {
 		Pane root = new Pane();
 		root.setPrefSize(BOARD_WIDTH, BOARD_HEIGHT + 30);
+		
+		//load enemy designs into array
+		enemyPng[0] = new Image("/resources/1.png");
+		enemyPng[1] = new Image("/resources/2.png");
+		enemyPng[2] = new Image("/resources/3.png");
+		enemyPng[3] = new Image("/resources/4.png");
+		enemyPng[4] = new Image("/resources/5.png");
+		
+		ip[0] = new ImagePattern(enemyPng[0]);
+		ip[1] = new ImagePattern(enemyPng[1]);
+		ip[2] = new ImagePattern(enemyPng[2]);
+		ip[3] = new ImagePattern(enemyPng[3]);
+		ip[4] = new ImagePattern(enemyPng[4]);
 		
 		Label experience = new Label("Exp:");
 		
@@ -75,27 +101,32 @@ public class Board{
 				
 				if(rand <= 0.45 ) {
 					tile.setLevel(1);
+					//tile.square.setFill(ip[0]);
 					tile.setText("One");
 				}
 				
 				else if(rand > 0.45 && rand <= 0.7) {
 					tile.setLevel(2);
+					//tile.square.setFill(ip[1]);
 					tile.setText("Two");
 					}
 				
 				
 				else if(rand > 0.7 && rand <= 0.85) {
 					tile.setLevel(3);
+					//tile.square.setFill(ip[2]);
 					tile.setText("Three");
 				}
 				
 				else if(rand > 0.85 && rand <= 0.95) {
 					tile.setLevel(4);
+					//tile.square.setFill(ip[3]);
 					tile.setText("Four");
 				}
 				
 				else if(rand > 0.95 && rand <= 1) {
 					tile.setLevel(5);
+					//tile.square.setFill(ip[4]);
 					tile.setText("Five");
 				}
 			}

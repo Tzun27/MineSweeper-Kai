@@ -21,8 +21,8 @@ public class Tile extends StackPane{
 	private int enemyLevel = 0;
 	
 	//minus two for the border
-	private Rectangle square = new Rectangle(board.getTileSize() - 2, board.getTileSize() - 2);
-	private Text text = new Text();
+	public Rectangle square = new Rectangle(board.getTileSize() - 2, board.getTileSize() - 2);
+	private Text text = new Text("");
 	private ProgressBar exp = Minesweeper.board.exp;
 	
 	public boolean isEnemy() {
@@ -159,7 +159,7 @@ public class Tile extends StackPane{
 
 	
 	public void checkWin() {
-		if(board.openTiles == Board.HORIZONTAL_TILES * Board.VERTICAL_TILES) {
+		if(board.openTiles == board.getHorizontalTiles() * board.getVerticalTiles()) {
 			System.out.println("You win!");
 			return;
 		}
@@ -182,14 +182,44 @@ public class Tile extends StackPane{
 			exp.setProgress(player.getPlayerExp() % 1.0);
 			player.updateLevel();
 			level.setText("Level: " + player.getPlayerLevel());
-			//System.out.println("Game Over");
 		}
 		
 		//System.out.println(player.getPlayerExp());
 		//System.out.println(player.getPlayerLevel());
+		
 		isOpen = true;
-		text.setVisible(true);
-		square.setFill(null);
+		
+		if(!isEnemy)
+			text.setVisible(true);
+		
+		switch (enemyLevel) {
+		case 0: {
+			square.setFill(null);
+			break;
+		}
+		case 1: {
+			square.setFill(board.ip[0]);
+			break;
+		}
+		case 2: {
+			square.setFill(board.ip[1]);
+			break;
+		}
+		case 3: {
+			square.setFill(board.ip[2]);
+			break;
+		}
+		case 4: {
+			square.setFill(board.ip[3]);
+			break;
+		}
+		case 5: {
+			square.setFill(board.ip[4]);
+			break;
+		}
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + enemyLevel);
+		}
 		
 		if(text.getText().isEmpty()) {
 			List<Tile> surroundings = board.checkSurroundings(this);
