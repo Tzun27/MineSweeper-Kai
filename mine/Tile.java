@@ -177,20 +177,6 @@ public class Tile extends StackPane{
 		
 		board.openTiles++;
 		
-		if(isEnemy) {
-			if(player.getPlayerLevel() < enemyLevel) {
-				System.out.println("Game Over");
-			}
-			
-			calculateExpGain(player.getPlayerLevel());
-			exp.setProgress(player.getPlayerExp() % 1.0);
-			player.updateLevel();
-			level.setText("Level: " + player.getPlayerLevel());
-		}
-		
-		//System.out.println(player.getPlayerExp());
-		//System.out.println(player.getPlayerLevel());
-		
 		isOpen = true;
 		
 		if(!isEnemy)
@@ -224,6 +210,22 @@ public class Tile extends StackPane{
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + enemyLevel);
 		}
+		
+		if(isEnemy) {
+			if(player.getPlayerLevel() < enemyLevel) {
+				System.out.println("Game Over");
+				return;
+			}
+			
+			calculateExpGain(player.getPlayerLevel());
+			exp.setProgress(player.getPlayerExp() % 1.0);
+			player.updateLevel();
+			level.setText("Level: " + player.getPlayerLevel());
+		}
+		
+		//System.out.println(player.getPlayerExp());
+		//System.out.println(player.getPlayerLevel());
+				
 		
 		if(text.getText().isEmpty()) {
 			List<Tile> surroundings = board.checkSurroundings(this);

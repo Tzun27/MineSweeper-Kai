@@ -159,11 +159,10 @@ public class Board{
 	public List<Tile> checkSurroundings(Tile tile){
 		List<Tile> surroundings = new ArrayList<>();
 		
-		/*there will be (at most) eight tiles surrounding any given tile
-		  consider the target tile as being in the middle
-		  the tiles surrounding the middle tile will have their coordinates expressed relative to middle tile
-		  ex. middle [2][2] , top left [1][1]
-		 */
+		/* there will be (at most) eight tiles surrounding any given tile
+		   consider the target tile as being in the middle
+		   the tiles surrounding the middle tile will have their coordinates expressed relative to middle tile
+		   ex. middle [2][2] , top left [1][1] */
 		int[] coordinates = new int[] {
 				//left side
 				-1,-1,
