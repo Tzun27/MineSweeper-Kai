@@ -11,9 +11,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class Tile extends StackPane{
-	private Board board = Minesweeper.board;
-	private Player player = Minesweeper.board.player;
-	private Label level = Minesweeper.board.level;
+	private Board board = Main.board;
+	private Player player = Main.board.player;
+	private Label level = Main.board.level;
 	
 	private int x, y;
 	private boolean isEnemy;
@@ -23,7 +23,7 @@ public class Tile extends StackPane{
 	//minus two for the border
 	public Rectangle square = new Rectangle(board.getTileSize() - 2, board.getTileSize() - 2);
 	private Text text = new Text("");
-	private ProgressBar exp = Minesweeper.board.exp;
+	private ProgressBar exp = Main.board.exp;
 	
 	public boolean isEnemy() {
 		return isEnemy;
@@ -212,7 +212,12 @@ public class Tile extends StackPane{
 		}
 		
 		if(isEnemy) {
+			//lose condition
 			if(player.getPlayerLevel() < enemyLevel) {
+				
+				board.loseMsg.setVisible(true);
+				board.loseMsg.toFront();
+				
 				System.out.println("Game Over");
 				return;
 			}

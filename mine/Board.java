@@ -1,14 +1,19 @@
 package mine;
 
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.text.Font;
 
+import java.awt.Paint;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +35,7 @@ public class Board{
 	public static Player player = new Player();
 	public static Label level = new Label("Level: " + player.getPlayerLevel());
 	public static ProgressBar exp = new ProgressBar();
+	public static Label loseMsg = new Label("Game Over");
 	public Scene scene;
 	
 	public int getHorizontalTiles() {
@@ -78,7 +84,14 @@ public class Board{
 		exp.setLayoutY(800);
 		exp.setProgress(0);
 		
-		root.getChildren().addAll(exp,experience,level);
+		loseMsg.setVisible(false);
+		loseMsg.setBackground(Background.fill(Color.LIGHTGREY));
+		loseMsg.setBorder(Border.stroke(Color.BLACK));
+		loseMsg.setLayoutX(200);
+		loseMsg.setLayoutY(340);
+		loseMsg.setFont(Font.font(80));
+		
+		root.getChildren().addAll(exp, experience, level, loseMsg);
 		
 		//generates tiles and places them into the grid
 		for(int x = 0; x < HORIZONTAL_TILES; x++) {
