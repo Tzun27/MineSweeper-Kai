@@ -1,5 +1,6 @@
 package mine;
 
+import java.io.IOException;
 import java.util.List;
 
 import javafx.scene.control.Label;
@@ -214,9 +215,9 @@ public class Tile extends StackPane{
 		if(isEnemy) {
 			//lose condition
 			if(player.getPlayerLevel() < enemyLevel) {
-				
 				board.loseMsg.setVisible(true);
 				board.loseMsg.toFront();
+				board.restart.toFront();
 				
 				System.out.println("Game Over");
 				return;

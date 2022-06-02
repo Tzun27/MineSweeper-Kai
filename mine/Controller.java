@@ -24,9 +24,13 @@ public class Controller {
 
     @FXML
     private Button exitButton;
+    @FXML
     private Button startButton;
+    @FXML
     private Button rulesButton;
+    @FXML
     private Button backButton;
+    @FXML
     private Button switchtoScene2;
     
     @FXML
@@ -51,6 +55,7 @@ public class Controller {
     //exchange to Scene2
     public void start (ActionEvent event) throws IOException {
     	stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+    	board.scene = new Scene(board.init_board());
     	scene = board.scene;
     	stage.setScene(scene);
     	stage.centerOnScreen();
@@ -63,9 +68,9 @@ public class Controller {
     	stage = (Stage)((Node) event.getSource()).getScene().getWindow();
     	scene = new Scene(root);
     	stage.setScene(scene);
+    	stage.centerOnScreen();
     	stage.show();
     }
-
    
 	//exchange to rules
 		public void rules(ActionEvent event) throws IOException {

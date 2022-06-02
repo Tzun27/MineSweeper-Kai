@@ -1,8 +1,13 @@
 package mine;
 
-import javafx.geometry.Pos;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
@@ -12,8 +17,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 
-import java.awt.Paint;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,11 +38,13 @@ public class Board{
 	private Image[] enemyPng = new Image[5];
 	public ImagePattern[] ip = new ImagePattern[5];
 	
+	private Stage stage;
 	public static Player player = new Player();
 	public static Label level = new Label("Level: " + player.getPlayerLevel());
 	public static ProgressBar exp = new ProgressBar();
 	public static Label loseMsg = new Label("Game Over");
 	public Scene scene;
+	public static Button restart = new Button();
 	
 	public int getHorizontalTiles() {
 		return HORIZONTAL_TILES;
@@ -91,7 +99,30 @@ public class Board{
 		loseMsg.setLayoutY(340);
 		loseMsg.setFont(Font.font(80));
 		
-		root.getChildren().addAll(exp, experience, level, loseMsg);
+		restart.setLayoutX(348);
+		restart.setLayoutY(460);
+		restart.setPrefSize(100, 50);
+		restart.setText("Back to Start");
+		restart.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				Parent root;
+				try {
+					root = FXMLLoader.load(getClass().getResource("/resources/Menu.fxml"));
+					stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+			    	scene = new Scene(root);
+			    	stage.setScene(scene);
+			    	stage.centerOnScreen();
+			    	stage.show();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+		    	
+			}
+		});
+		
+		root.getChildren().addAll(exp, experience, level, loseMsg, restart);
 		
 		//generates tiles and places them into the grid
 		for(int x = 0; x < HORIZONTAL_TILES; x++) {
