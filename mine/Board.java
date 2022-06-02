@@ -1,7 +1,6 @@
 package mine;
 
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -63,6 +62,8 @@ public class Board{
 		Pane root = new Pane();
 		root.setPrefSize(BOARD_WIDTH, BOARD_HEIGHT + 30);
 		
+		player = new Player();
+		
 		//load enemy designs into array
 		enemyPng[0] = new Image("/resources/1.png");
 		enemyPng[1] = new Image("/resources/2.png");
@@ -78,6 +79,7 @@ public class Board{
 		
 		Label experience = new Label("Exp:");
 		
+		level.setText("Level: " + player.getPlayerLevel());
 		level.setLayoutX(600);
 		level.setLayoutY(800);
 		level.setFont(Font.font(20));
@@ -103,6 +105,7 @@ public class Board{
 		restart.setLayoutY(460);
 		restart.setPrefSize(100, 50);
 		restart.setText("Back to Start");
+		restart.setVisible(false);
 		restart.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override

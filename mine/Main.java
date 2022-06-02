@@ -1,7 +1,5 @@
 package mine;
 
-import java.io.IOException;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
@@ -14,7 +12,6 @@ import javafx.stage.Stage;
 public class Main extends Application{
 
 	public static Board board = new Board();
-	private static Stage stage;
 	
 	public static void main(String[] args) {
 		launch(args);

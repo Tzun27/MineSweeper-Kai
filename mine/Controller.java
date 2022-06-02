@@ -42,7 +42,6 @@ public class Controller {
     	Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Logout");
 		alert.setHeaderText("Are you sure you want to exit?");
-//		alert.setContentText("You sure you want to exit?");
 		
 		if (alert.showAndWait().get() == ButtonType.OK){
 
@@ -72,13 +71,13 @@ public class Controller {
     	stage.show();
     }
    
-	//exchange to rules
+	//shows rules
 		public void rules(ActionEvent event) throws IOException {
-			Parent root = FXMLLoader.load(getClass().getResource("/resources/Rules.fxml"));
-	    	stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-	    	scene = new Scene(root);
-	    	stage.setScene(scene);
-	    	stage.show();
+		Parent root = FXMLLoader.load(getClass().getResource("/resources/Rules.fxml"));
+	   	stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+	   	scene = new Scene(root);
+	   	stage.setScene(scene);
+	   	stage.show();
 	    }
 		  
     
