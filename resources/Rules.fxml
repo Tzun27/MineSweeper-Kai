@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mine.Controller">
+   <children>
+      <ImageView fitHeight="456.0" fitWidth="607.0" layoutX="-2.0" layoutY="-5.0" opacity="0.31">
+         <image>
+            <Image url="@background.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="47.0" layoutY="42.0" prefHeight="38.0" prefWidth="463.0" text="改編掃雷遊戲">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="0.6009501187648456" endY="0.5771971496437055" startX="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.006711409395973154">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.2726100834833852">
+                     <color>
+                        <Color red="0.6399999856948853" green="0.04479999840259552" blue="0.04479999840259552" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.8625798002946473">
+                     <color>
+                        <Color red="0.6499999761581421" green="0.039000000804662704" blue="0.039000000804662704" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.9899328859060402">
+                     <color>
+                        <Color red="0.658823549747467" green="0.03921568766236305" blue="0.03921568766236305" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.658823549747467" green="0.03921568766236305" blue="0.03921568766236305" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <Label layoutX="9.0" layoutY="89.0" prefHeight="17.0" prefWidth="583.0" text="规则 : 在一块（16*30）的网格中，点开所有没有雷的网格。所有操作依靠鼠标即可完成。左键点开" textFill="#a60a0a" />
+      <Label layoutX="44.0" layoutY="106.0" prefHeight="17.0" prefWidth="542.0" text="网格，若该网格为等級高於自己的怪物則失败；若該網格怪物等級少於或等於玩家等級則打敗" textFill="#a80a0a" />
+      <Label layoutX="44.0" layoutY="123.0" prefHeight="17.0" prefWidth="542.0" text="怪物，清空該格。玩家可以通過收集遊戲中的道具或打敗怪物來升級。若该网格周边八个网格" textFill="#a80a0a" />
+      <Label layoutX="44.0" layoutY="140.0" prefHeight="17.0" prefWidth="542.0" text="級道具，则显示道具總數。一下右键插旗，表明你确定该网格有怪物，在改变插旗状态前该网" textFill="#a80a0a" />
+      <Label layoutX="44.0" layoutY="157.0" prefHeight="17.0" prefWidth="542.0" text="格无法被点开；在旗上右键将插旗状态改变为问号标记（仅具有标记作用，与普通网格无异）" textFill="#a80a0a" />
+      <Label layoutX="44.0" layoutY="174.0" prefHeight="17.0" prefWidth="542.0" text="；在问号上右键回复初始状态。" textFill="#a80a0a" />
+      <Button fx:id="backButton" layoutX="472.0" layoutY="369.0" mnemonicParsing="false" onAction="#backtomenu" prefHeight="50.0" prefWidth="100.0" style="-fx-border-color: A80A0A; -fx-border-radius: 100; -fx-border-width: 3; -fx-background-radius: 100; -fx-background-color: FFF3BB;" text="Back">
+         <font>
+            <Font name="Avenir Next Bold" size="21.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="0.45605700712589076" endY="0.42042755344418065" startX="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.006711409395973154">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="0.7596374201997053">
+                     <color>
+                        <Color red="0.6499999761581421" green="0.039000000804662704" blue="0.039000000804662704" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.658823549747467" green="0.03921568766236305" blue="0.03921568766236305" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Button>
+      <ImageView fitHeight="56.0" fitWidth="58.0" layoutX="386.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@4.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="lvl1" fitHeight="56.0" fitWidth="58.0" layoutX="47.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@1.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="56.0" fitWidth="58.0" layoutX="273.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@3.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="lvl2" fitHeight="56.0" fitWidth="58.0" layoutX="159.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@2.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="lvl11" fitHeight="56.0" fitWidth="58.0" layoutX="494.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@5.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="52.0" layoutY="324.0" text="Level 1">
+         <font>
+            <Font name="Avenir Next Bold" size="13.0" />
+         </font></Label>
+      <Label layoutX="503.0" layoutY="325.0" text="Level5">
+         <font>
+            <Font name="Avenir Next Bold" size="13.0" />
+         </font></Label>
+      <Label layoutX="393.0" layoutY="325.0" text="Level4">
+         <font>
+            <Font name="Avenir Next Bold" size="13.0" />
+         </font></Label>
+      <Label layoutX="282.0" layoutY="325.0" text="Level3">
+         <font>
+            <Font name="Avenir Next Bold" size="13.0" />
+         </font></Label>
+      <Label layoutX="167.0" layoutY="325.0" text="Level 2">
+         <font>
+            <Font name="Avenir Next Bold" size="13.0" />
+         </font></Label>
+      <Label layoutX="238.0" layoutY="227.0" prefHeight="27.0" prefWidth="126.0" text="Monster Level" textAlignment="CENTER">
+         <font>
+            <Font name="Avenir Next Bold" size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
