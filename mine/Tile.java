@@ -165,6 +165,10 @@ public class Tile extends StackPane{
 	public void checkWin() {
 		if(board.openTiles == board.getHorizontalTiles() * board.getVerticalTiles()) {
 			System.out.println("You win!");
+			board.winMsg.setVisible(true);
+			board.winMsg.toFront();
+			board.restart.setVisible(true);
+			board.restart.toFront();
 			return;
 		}
 	}

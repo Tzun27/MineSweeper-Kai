@@ -42,6 +42,7 @@ public class Board{
 	public static Label level = new Label("Level: " + player.getPlayerLevel());
 	public static ProgressBar exp = new ProgressBar();
 	public static Label loseMsg = new Label("Game Over");
+	public static Label winMsg = new Label("You Win!");
 	public Scene scene;
 	public static Button restart = new Button();
 	
@@ -100,6 +101,13 @@ public class Board{
 		loseMsg.setLayoutX(200);
 		loseMsg.setLayoutY(340);
 		loseMsg.setFont(Font.font(80));
+		
+		winMsg.setVisible(false);
+		winMsg.setBackground(Background.fill(Color.LIGHTGREY));
+		winMsg.setBorder(Border.stroke(Color.BLACK));
+		winMsg.setLayoutX(200);
+		winMsg.setLayoutY(340);
+		winMsg.setFont(Font.font(80));
 		
 		restart.setLayoutX(348);
 		restart.setLayoutY(460);
@@ -179,7 +187,7 @@ public class Board{
 			}
 		}
 		
-		//check how many enemies are around the tile and adds corresponding text
+		//check total level of enemies around the tile and adds corresponding text
 		for(int x = 0; x < HORIZONTAL_TILES; x++) {
 			for(int y = 0; y < VERTICAL_TILES; y++) {
 				Tile tile = grid[y][x];
