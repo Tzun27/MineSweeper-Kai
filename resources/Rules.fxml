@@ -58,12 +58,10 @@
             </LinearGradient>
          </textFill>
       </Label>
-      <Label layoutX="9.0" layoutY="89.0" prefHeight="17.0" prefWidth="583.0" text="规则 : 在一块（16*30）的网格中，点开所有没有雷的网格。所有操作依靠鼠标即可完成。左键点开" textFill="#a60a0a" />
+      <Label layoutX="9.0" layoutY="89.0" prefHeight="17.0" prefWidth="583.0" text="规则 : 在一块（20*20）的网格中，目標為点开所有網格。所有操作依靠鼠标即可完成。左键点开" textFill="#a60a0a" />
       <Label layoutX="44.0" layoutY="106.0" prefHeight="17.0" prefWidth="542.0" text="网格，若该网格为等級高於自己的怪物則失败；若該網格怪物等級少於或等於玩家等級則打敗" textFill="#a80a0a" />
-      <Label layoutX="44.0" layoutY="123.0" prefHeight="17.0" prefWidth="542.0" text="怪物，清空該格。玩家可以通過收集遊戲中的道具或打敗怪物來升級。若该网格周边八个网格" textFill="#a80a0a" />
-      <Label layoutX="44.0" layoutY="140.0" prefHeight="17.0" prefWidth="542.0" text="級道具，则显示道具總數。一下右键插旗，表明你确定该网格有怪物，在改变插旗状态前该网" textFill="#a80a0a" />
-      <Label layoutX="44.0" layoutY="157.0" prefHeight="17.0" prefWidth="542.0" text="格无法被点开；在旗上右键将插旗状态改变为问号标记（仅具有标记作用，与普通网格无异）" textFill="#a80a0a" />
-      <Label layoutX="44.0" layoutY="174.0" prefHeight="17.0" prefWidth="542.0" text="；在问号上右键回复初始状态。" textFill="#a80a0a" />
+      <Label layoutX="44.0" layoutY="123.0" prefHeight="17.0" prefWidth="542.0" text="怪物，清空該格。玩家可以通過打敗怪物來升級，升級后從較低級的怪物獲得的經驗會減少。" textFill="#a80a0a" />
+      <Label layoutX="44.0" layoutY="140.0" prefHeight="17.0" prefWidth="542.0" text="如網格不含怪物，將顯示周圍怪物等級總和。" textFill="#a80a0a" />
       <Button fx:id="backButton" layoutX="472.0" layoutY="369.0" mnemonicParsing="false" onAction="#backtomenu" prefHeight="50.0" prefWidth="100.0" style="-fx-border-color: A80A0A; -fx-border-radius: 100; -fx-border-width: 3; -fx-background-radius: 100; -fx-background-color: FFF3BB;" text="Back">
          <font>
             <Font name="Avenir Next Bold" size="21.0" />
